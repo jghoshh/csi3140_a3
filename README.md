@@ -1,14 +1,14 @@
 # 1D Pacman (CSI3140 Assignment 2)
 **Authors**: 
 - Jay Ghosh (300243766) 
-- Noah Do Rego ()
+- Noah Do Rego (300234846)
 
 ## Rules: 
 - Use the ```LEFT``` and ```RIGHT``` arrow keys to move PACMAN consume as many hollow circles as possible without encountering a ghost.
-- Points are gained by consuming hollow circles and 
 - If PACMAN encounters a ghost, the game ends and the final score is printed out.
-- If PACMAN encounters a cherry,
-- If PACMAN encounters a suprised face,
+- If PACMAN encounters a cherry, the ghosts on the board are turned into surprised faces.
+- If PACMAN encounters a suprised face, PACMAN consumes it and gains 5 points. 
+- If PACMAN encounters a hollow circle, PACMAN consumes it and gains 1 point.
 
 ## Game States:
 #### Game Started

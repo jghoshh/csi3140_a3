@@ -4,7 +4,7 @@ The following document defines the design system for Assignment 2.
 
 **Authors:** 
 - Jay Ghosh (300243766) 
-- Noah Do Rego ()
+- Noah Do Rego (300234846)
 
 ## Font
 
