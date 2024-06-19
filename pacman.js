@@ -88,6 +88,9 @@ function spawnGhost() {
 }
 
 function moveGhost() {
+
+    if (gameEnded) return;
+
     if (ghost == "👻" && !ateGhost) {
         if (pacLoc < ghostLoc) {
             board[ghostLoc] = "◦";
@@ -110,7 +113,8 @@ function moveGhost() {
 
     if (ghostLoc == pacLoc) {
         if (ghost == "👻") {
-            endGame();
+            console.log("being called here 1!")
+            checkLocation(pacLoc);
         } else if (ghost == "😱") {
             document.getElementById("board").innerHTML = board.join(" ");
             score += 5;
@@ -133,8 +137,7 @@ function endGame() {
     player = "💀";
     board[pacLoc] = player;
     document.getElementById("board").innerHTML = board.join(" ");
-    score = "Game Over - Final Score: " + score;
-    document.getElementById("score").innerHTML = score;
+    document.getElementById("score").innerHTML = "Game Over - Final Score: " + score;
     return;
 }
 
