@@ -1,7 +1,8 @@
 # Design System
 
 This is the design system for Assignment 2.
-Authors: Jay Ghosh (300243766) and Noah Do Rego ()
+
+**Authors:** Jay Ghosh (300243766) and Noah Do Rego ()
 
 ## Font
 
