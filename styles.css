@@ -6,6 +6,22 @@ body {
   color: #333;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
 #section-aligner {
   display: flex;
   justify-content: center;
@@ -26,6 +42,5 @@ body {
 }
 
 #score {
-  font-size: 1.5rem;
   text-align: center;
 }

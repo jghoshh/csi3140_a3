@@ -1,8 +1,10 @@
 # Design System
 
-This is the design system for Assignment 2.
+The following document defines the design system for Assignment 2.
 
-**Authors:** Jay Ghosh (300243766) and Noah Do Rego ()
+**Authors:** 
+- Jay Ghosh (300243766) 
+- Noah Do Rego ()
 
 ## Font
 
@@ -10,7 +12,7 @@ This is the design system for Assignment 2.
 
 - **Name:** Courier
 - **Type:** Monospace
-- **Usage:** Used as the main, base font across the platform for all text elements, providing a clean, uniform look.
+- **Usage:** Used as the main, base font across the platform for all text elements, providing a clean, uniform look. 
 
 ### Fallback
 
@@ -18,6 +20,21 @@ This is the design system for Assignment 2.
 - **Condition:** Applied when Courier is not available on the user's system.
 - **Purpose:** Ensures that text remains readable and stylistically consistent, even if the primary typeface cannot be loaded.
 
+### Typography Settings
+
+The following are the specific font sizes used for various text elements within our game. 
+#### Headers
+
+- **Main Heading (`<h1>`)**: `1rem`
+  - Used for the main game title on the main page.
+- **Secondary Heading (`<h2>`)**: `1.5rem`
+  - Used for displaying the author names on the main page after the main game title.
+- **Tertiary Heading (`<h3>`)**: `1.2rem`
+  - Used for displaying supporting information after the main game title and author names on the main page.
+
+#### Body Text
+- **Paragraph (`<p>`)**: `1rem`
+  - The standard text size used for body text.
 
 ## Colours
 
@@ -77,6 +94,35 @@ The body is the core component of the application that contains the game board a
     <script src="pacman.js"></script>
 </body>
 ```
+
+### Board
+
+The board is simply a ```<p>``` element to which we apply custom JavaScript manipulations to make interactive and *"playable"*.
+
+#### Structure
+```html
+...
+<body>
+  ...
+    <p id="board"></p>
+  ...
+</body>
+```
+
+### Scoreboard
+
+The Scoreboard is simply a ```<p>``` element to which we apply custom JavaScript manipulations to make interactive.
+
+#### Structure
+```html
+...
+<body>
+  ...
+    <p id="score"></p>
+  ...
+</body>
+```
+
 
 ### Footer
 
