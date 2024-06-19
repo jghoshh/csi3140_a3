@@ -3,7 +3,7 @@
 - Jay Ghosh (300243766) 
 - Noah Do Rego ()
 
-## Instruction to play: 
+## Rules: 
 - Use the ```LEFT``` and ```RIGHT``` arrow keys to move PACMAN consume as many hollow circles as possible without encountering a ghost.
 - Points are gained by consuming hollow circles and 
 - If PACMAN encounters a ghost, the game ends and the final score is printed out.
