@@ -1,4 +1,4 @@
-# 1D Pacman (CSI3140 Assignment 2)
+# 1D Pacman Server-based Implementation (CSI3140 Assignment 3)
 **Authors**: 
 - Jay Ghosh (300243766) 
 - Noah Do Rego (300234846)
