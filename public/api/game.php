@@ -60,6 +60,8 @@ function movePacman($direction) {
     moveEntity($position, $direction === 'left' ? -1 : 1);
     $newPositionValue = $state['board'][$position];
 
+    $state['board'][$position] = PACMAN;  
+
     switch ($newPositionValue) { 
         case FRUIT:
             $state['score'] += 10;
@@ -71,8 +73,8 @@ function movePacman($direction) {
             moveGhost();
             break;
         case GHOST:
-            $state['game_over'] = true;
             $state['board'][$position] = DEAD;
+            $state['game_over'] = true;
             return;
         case SCARED_GHOST:
             $state['score'] += 20;
@@ -83,8 +85,6 @@ function movePacman($direction) {
             $state['score'] += 1;
             moveGhost();
     }
-
-    $state['board'][$position] = PACMAN;  
 
     if (!in_array(FRUIT, $state['board'])) {
         spawnFruit();
@@ -128,9 +128,6 @@ switch ($action) {
         $direction = isset($_GET['direction']) && in_array($_GET['direction'], ['left', 'right'])
             ? $_GET['direction'] : 'right';
         movePacman($direction);
-        if ($_SESSION['game_state']['game_over']) {
-            updateLeaderboard();
-        }
         echo json_encode($_SESSION['game_state']);
         break;
     case 'reset':
@@ -138,6 +135,7 @@ switch ($action) {
         echo json_encode($_SESSION['game_state']);
         break;
     case 'get_leaderboard':
+        updateLeaderboard();
         echo json_encode($_SESSION['leaderboard'] ?? []);
         break;
     case 'clear_session':

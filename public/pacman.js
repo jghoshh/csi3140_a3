@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    var leaderboardUpdated = false;
     const boardElement = document.getElementById('board');
     const scoreElement = document.getElementById('score');
     const messageElement = document.getElementById('message');
@@ -18,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 scoreElement.textContent = 'Score: ' + data.score;
                 if (data.game_over) {
                     messageElement.textContent = 'Game Over! Press R to restart.';
-                    fetchLeaderboard();
+                    !leaderboardUpdated && fetchLeaderboard();
+                    leaderboardUpdated = true;
                 } else {
                     messageElement.textContent = '';
                 }
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 console.log('Reset response:', data);
+                leaderboardUpdated = false;
                 updateGameState();
             })
             .catch(error => console.error('Error:', error));
@@ -67,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 console.log('Session cleared:', data);
+                fetchLeaderboard();
                 resetGame();
             })
             .catch(error => console.error('Error:', error));
@@ -80,7 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
             movePacman('left');
         } else if (event.key === 'ArrowRight') {
             movePacman('right');
-        } else if (event.key === 'r' || event.key === 'R') {
+        }
+    });
+
+    document.addEventListener("keypress", (event) => {
+        if (event.key === 'r' || event.key === 'R') {
             resetGame();
         }
     });
