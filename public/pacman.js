@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Flag to track leaderboard updates
     var leaderboardUpdated = false;
+
+    // Variables to store HTML elements
     const boardElement = document.getElementById('board');
     const scoreElement = document.getElementById('score');
     const messageElement = document.getElementById('message');
     const leaderboardElement = document.createElement('div');
     document.body.appendChild(leaderboardElement);
 
+    // API call to update game state
     const updateGameState = () => {
         fetch('/api/game.php')
             .then(response => response.json())
@@ -28,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error:', error));
     }
 
+    // API call to move Pacman in passed in direction
     const movePacman = (direction) => {
         fetch(`/api/game.php?action=move&direction=${direction}`)
             .then(response => response.json())
@@ -38,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error:', error));
     }
 
+    // API call to reset game to initial state
     const resetGame = () => {
         fetch('/api/game.php?action=reset')
             .then(response => response.json())
@@ -49,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error:', error));
     }
 
+    // API call to get updated leaderboard
     const fetchLeaderboard = () => {
         fetch('/api/game.php?action=get_leaderboard')
             .then(response => response.json())
@@ -65,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error:', error));
     }
 
+    // API call for clearing session
     const clearSession = () => {
         fetch('/api/game.php?action=clear_session')
             .then(response => response.json())
@@ -76,9 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error:', error));
     }
 
+    // Defining button behaviour
     document.getElementById('restartButton').addEventListener('click', resetGame);
     document.getElementById('clearSessionButton').addEventListener('click', clearSession);
 
+    // Add listener for left/right arrow keys to control movement
     document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowLeft') {
             movePacman('left');
@@ -87,11 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Reset game when "R" is pressed
     document.addEventListener("keypress", (event) => {
         if (event.key === 'r' || event.key === 'R') {
             resetGame();
         }
     });
 
+    // Initial call to update game state when DOM is loaded
     updateGameState();
 });

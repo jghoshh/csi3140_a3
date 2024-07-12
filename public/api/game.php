@@ -3,6 +3,7 @@ session_start();
 
 header('Content-Type: application/json');
 
+// Constant variables
 const BOARD_SIZE = 10;
 const PACMAN = "😀";
 const GHOST = "👻";
@@ -11,6 +12,7 @@ const FRUIT = "🍒";
 const EMPTY_CELL = "◦";
 const DEAD = "💀";
 
+// Sets initial board values
 function initializeGameState() {
     $_SESSION['game_state'] = [
         'pacman_position' => floor(BOARD_SIZE / 2),
@@ -25,11 +27,13 @@ function initializeGameState() {
     spawnGhost();
 }
 
+// Returns a random empty cell index
 function findEmptyCell() {
     $empty_cells = array_keys($_SESSION['game_state']['board'], EMPTY_CELL);
     return !empty($empty_cells) ? $empty_cells[array_rand($empty_cells)] : false;
 }
 
+// Spawns fruit in random location on board
 function spawnFruit() {
     $pos = findEmptyCell();
     if ($pos !== false) {
@@ -37,6 +41,7 @@ function spawnFruit() {
     }
 }
 
+// Spawns ghost in random location on board
 function spawnGhost() {
     $state = &$_SESSION['game_state'];
     $pos = findEmptyCell();
@@ -47,10 +52,12 @@ function spawnGhost() {
     }
 }
 
+// Generic function for moving entity
 function moveEntity(&$position, $direction) {
     $position = ($position + $direction + BOARD_SIZE) % BOARD_SIZE;
 }
 
+// Move Pacman left/right and update based on loation
 function movePacman($direction) {
     $state = &$_SESSION['game_state'];
     if ($state['game_over']) return;
@@ -91,6 +98,7 @@ function movePacman($direction) {
     }
 }
 
+// Move ghost and check if Pacman is hit
 function moveGhost() {
     $state = &$_SESSION['game_state'];
     if ($state['ghost_position'] === -1 || $state['ghost_scared']) return;
@@ -109,7 +117,7 @@ function moveGhost() {
     }
 }
 
-
+// Update leaderboard with latest score
 function updateLeaderboard() {
     if (!isset($_SESSION['leaderboard'])) $_SESSION['leaderboard'] = [];
     $_SESSION['leaderboard'][] = $_SESSION['game_state']['score'];
@@ -117,12 +125,15 @@ function updateLeaderboard() {
     $_SESSION['leaderboard'] = array_slice($_SESSION['leaderboard'], 0, 10);
 }
 
+// Get action param from API calls
 $action = $_GET['action'] ?? '';
 
+// Check if game is initialized
 if (!isset($_SESSION['game_state'])) {
     initializeGameState();
 }
 
+// Call functions based on passed action
 switch ($action) {
     case 'move':
         $direction = isset($_GET['direction']) && in_array($_GET['direction'], ['left', 'right'])
